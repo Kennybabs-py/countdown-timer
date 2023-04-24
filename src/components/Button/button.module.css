@@ -1,8 +1,22 @@
 button {
   all: unset;
-  padding: 1rem 2.5rem;
+  padding: 1rem 1.2rem;
   background-color: #191919;
   color: antiquewhite;
+  font-weight: 600;
+  font-size: 1.2rem;
   text-align: center;
+  text-transform: capitalize;
   border-radius: 8px;
+  cursor: pointer;
+  transition: 300ms ease-in-out;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+button[disabled] {
+  opacity: 0.8;
+  cursor: not-allowed;
 }
