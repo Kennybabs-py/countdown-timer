@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 
 import Button from "../../components/Button";
+import Input from "../../components/Input";
 
 import "./home.css";
 
@@ -45,15 +46,12 @@ export default function Home() {
   function startTimer() {
     if (!isRunning) {
       setIsRunning(true);
+      setIsPaused(false);
       const newVal = parseInt(inputValue);
       const seconds = newVal * 60;
       setCountDown(seconds);
     }
     setIsRunning(true);
-  }
-
-  function pauseTimer() {
-    setIsPaused(!isPaused);
   }
 
   function resetTimer() {
@@ -69,14 +67,7 @@ export default function Home() {
         {`${getHours()}:${getMins()}:${getSecs()}`}
       </div>
 
-      <input
-        type="number"
-        value={inputValue}
-        placeholder="Mins"
-        onChange={(e) => {
-          handleChange(e);
-        }}
-      />
+      <Input value={inputValue} onChange={handleChange} />
 
       <div className="buttons__container">
         <Button
@@ -86,7 +77,9 @@ export default function Home() {
         />
         <Button
           label={isPaused ? "pause" : "resume"}
-          onClick={pauseTimer}
+          onClick={() => {
+            setIsPaused(!isPaused);
+          }}
           isDisabled={inputValue.length <= 0}
         />
         <Button label="reset" onClick={resetTimer} />
