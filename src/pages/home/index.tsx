@@ -16,6 +16,9 @@ export default function Home() {
       if (!isPaused) {
         setCountDown((countDown) => (countDown === 0 ? 0 : countDown - 1));
       }
+      if (countDown === 0) {
+        setIsRunning(false);
+      }
     }, 1000);
 
     return () => {
@@ -76,7 +79,7 @@ export default function Home() {
           isDisabled={isRunning || inputValue.length <= 0}
         />
         <Button
-          label={isPaused ? "pause" : "resume"}
+          label={isPaused ? "resume" : "pause"}
           onClick={() => {
             setIsPaused(!isPaused);
           }}
